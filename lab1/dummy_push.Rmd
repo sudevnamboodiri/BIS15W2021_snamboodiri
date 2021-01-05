@@ -2,14 +2,16 @@
 title: "Dummy Push"
 author: "Sudev Namboodiri"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Install Packages
+Install Packages
 ```{r}
 options(repos = c(CRAN = "http://cran.rstudio.com"))
 install.packages("tidyverse")
