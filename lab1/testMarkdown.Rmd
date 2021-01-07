@@ -1,0 +1,22 @@
+---
+title: "Test Markdown"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# This is my first Markdown file
+## This is my first Markdown file
+This is my first Markdown file
+```{r}
+4*2+1
+
+#install.packages("tidyverse")
+library("tidyverse")
+ggplot(mtcars, aes(x = factor(cyl))) +
+    geom_bar()
+```
