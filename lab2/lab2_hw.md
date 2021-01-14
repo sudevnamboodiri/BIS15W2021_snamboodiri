@@ -1,7 +1,7 @@
 ---
 title: "Lab 2 Homework"
 author: "Sudev Namboodiri"
-date: "2021-01-11"
+date: "2021-01-13"
 output:
   html_document: 
     theme: spacelab
@@ -39,20 +39,20 @@ spring_8 <- c(36.80, 36.45, 33.15)
 
 ```r
 totSprings <- c(spring_1,spring_2,spring_3,spring_4,spring_5,spring_6,spring_7,spring_8)
-springMatrix <- matrix(totSprings,nrow=8)
+springMatrix <- matrix(totSprings,nrow=8, byrow = T)
 springMatrix
 ```
 
 ```
 ##       [,1]  [,2]  [,3]
-## [1,] 36.25 29.20 30.65
-## [2,] 35.40 39.70 29.75
-## [3,] 35.30 40.05 32.90
-## [4,] 35.15 38.65 32.50
-## [5,] 35.35 31.85 32.80
-## [6,] 33.35 31.40 36.80
-## [7,] 30.70 29.30 36.45
-## [8,] 29.65 30.20 33.15
+## [1,] 36.25 35.40 35.30
+## [2,] 35.15 35.35 33.35
+## [3,] 30.70 29.65 29.20
+## [4,] 39.70 40.05 38.65
+## [5,] 31.85 31.40 29.30
+## [6,] 30.20 30.65 29.75
+## [7,] 32.90 32.50 32.80
+## [8,] 36.80 36.45 33.15
 ```
 
 
@@ -69,14 +69,14 @@ springMatrix
 
 ```
 ##                   Jill Steve Susan
-## Bluebell Spring  36.25 29.20 30.65
-## Opal Spring      35.40 39.70 29.75
-## Riverside Spring 35.30 40.05 32.90
-## Too Hot Spring   35.15 38.65 32.50
-## Mystery Spring   35.35 31.85 32.80
-## Emerald Spring   33.35 31.40 36.80
-## Black Spring     30.70 29.30 36.45
-## Pearl Spring     29.65 30.20 33.15
+## Bluebell Spring  36.25 35.40 35.30
+## Opal Spring      35.15 35.35 33.35
+## Riverside Spring 30.70 29.65 29.20
+## Too Hot Spring   39.70 40.05 38.65
+## Mystery Spring   31.85 31.40 29.30
+## Emerald Spring   30.20 30.65 29.75
+## Black Spring     32.90 32.50 32.80
+## Pearl Spring     36.80 36.45 33.15
 ```
 
 
@@ -90,9 +90,9 @@ Mean_Temperature
 
 ```
 ##  Bluebell Spring      Opal Spring Riverside Spring   Too Hot Spring 
-##         32.03333         34.95000         36.08333         35.43333 
+##         35.65000         34.61667         29.85000         39.46667 
 ##   Mystery Spring   Emerald Spring     Black Spring     Pearl Spring 
-##         33.33333         33.85000         32.15000         31.00000
+##         30.85000         30.20000         32.73333         35.46667
 ```
 
 
@@ -106,14 +106,14 @@ springMatrix
 
 ```
 ##                   Jill Steve Susan Mean Temp Per Spring
-## Bluebell Spring  36.25 29.20 30.65             32.03333
-## Opal Spring      35.40 39.70 29.75             34.95000
-## Riverside Spring 35.30 40.05 32.90             36.08333
-## Too Hot Spring   35.15 38.65 32.50             35.43333
-## Mystery Spring   35.35 31.85 32.80             33.33333
-## Emerald Spring   33.35 31.40 36.80             33.85000
-## Black Spring     30.70 29.30 36.45             32.15000
-## Pearl Spring     29.65 30.20 33.15             31.00000
+## Bluebell Spring  36.25 35.40 35.30             35.65000
+## Opal Spring      35.15 35.35 33.35             34.61667
+## Riverside Spring 30.70 29.65 29.20             29.85000
+## Too Hot Spring   39.70 40.05 38.65             39.46667
+## Mystery Spring   31.85 31.40 29.30             30.85000
+## Emerald Spring   30.20 30.65 29.75             30.20000
+## Black Spring     32.90 32.50 32.80             32.73333
+## Pearl Spring     36.80 36.45 33.15             35.46667
 ```
 8. Show Susan's value for Opal Spring only.
 
@@ -123,19 +123,19 @@ SusanOpal
 ```
 
 ```
-## [1] 29.75
+## [1] 33.35
 ```
 
 9. Calculate the mean for Jill's column only.  
 
 
 ```r
-JillMean<- mean(springMatrix[,"Jill"])
-JillMean
+JillMean<- springMatrix[,"Jill"]
+mean(JillMean)
 ```
 
 ```
-## [1] 33.89375
+## [1] 34.19375
 ```
 
 
