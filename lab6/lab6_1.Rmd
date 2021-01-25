@@ -183,8 +183,8 @@ msleep %>%
 ```{r}
 names(msleep)
 msleep %>%
-  group_by(order, na.rm=TRUE) %>%
-  summarize(mean_brain = mean(brainwt))
+  group_by(order) %>%
+  summarize(mean_brain = mean(brainwt, na.rm=TRUE))
 ```
 
 ## That's it! Take a break and I will see you on Zoom!  
