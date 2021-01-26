@@ -3,9 +3,9 @@ title: "Lab 5 Homework"
 author: "Sudev Namboodiri"
 date: "`r Sys.Date()`"
 output:
-  html_document:
+  html_document: 
     theme: spacelab
-    toc: no
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -127,12 +127,17 @@ if(count(hairless_good) < count(hairless_bad)){
 }
 
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 10. Let's explore who the really "big" superheros are. In the `superhero_info` data, which have a height over 200 or weight over 300?
 ```{r}
 superhero_info %>%
   filter(height > 200 & weight > 300)
 ```
+</div>
 
 11. Just to be clear on the `|` operator,  have a look at the superheros over 300 in height...
 ```{r}
