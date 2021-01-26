@@ -30,11 +30,11 @@ library(janitor)
 ## Questions
 **1. (2 points) Briefly explain how R, RStudio, and GitHub work together to make work flows in data science transparent and repeatable. What is the advantage of using RMarkdown in this context?**  
 
-R is a programming language that tells the computer what to do, Rstudio is the GUI that lets programmers use R to do things. RMarkdown allows others to view code as it can be inserted directly into web documents, useful for transparency.
+R is a programming language that tells the computer what to do, Rstudio is the GUI that lets programmers use R to do things. RMarkdown allows others to view code as it can be inserted directly into web documents, useful for transparency. GitHub is an internet program that allows programmers to upload their code to the internet for others to view.
 
 **2. (2 points) What are the three types of `data structures` that we have discussed? Why are we using data frames for BIS 15L?**
 
-A vector, a bunch of values in a set. A matrix, which is a bunch of vectors. And a dataframe, which is a more accessible form of a matrix styled similarly to a spreadsheet and easier to use and visualize.
+A vector, a bunch of values in a set. A matrix, which is a bunch of vectors. And a dataframe, which is a more accessible form of a matrix styled similarly to a spreadsheet and easier to use and visualize (which is why we use it).
 
 In the midterm 1 folder there is a second folder called `data`. Inside the `data` folder, there is a .csv file called `ElephantsMF`. These data are from Phyllis Lee, Stirling University, and are related to Lee, P., et al. (2013), "Enduring consequences of early experiences: 40-year effects on survival and success among African elephants (Loxodonta africana)," Biology Letters, 9: 20130011. [kaggle](https://www.kaggle.com/mostafaelseidy/elephantsmf).  
 
@@ -49,7 +49,7 @@ str(elephants)
 
 **4. (2 points) Change the names of the variables to lower case and change the class of the variable `sex` to a factor.**
 ```{r}
-elephants <- janitor::clean_names(elephants)
+elephants <- clean_names(elephants)
 elephants
 elephants$sex = as.factor(elephants$sex)
 
@@ -59,7 +59,7 @@ elephants$sex = as.factor(elephants$sex)
 
 ```{r}
 elephants %>%
-tabyl(sex)
+  tabyl(sex)
 
 ```
 
@@ -91,7 +91,7 @@ elephants %>%
 elephants %>%
   filter(age>=25) %>%
   group_by(sex) %>%
-  summarise(avg_height = mean(height), min_height = min(height), max_height = max(height))
+  summarise(avg_height = mean(height), min_height = min(height), max_height = max(height), no_of_individuals = n())
 
 ```
 
@@ -131,9 +131,10 @@ gabondata %>%
 ```{r}
 
 gabondata %>%
-  group_by(Distance) %>%
-  summarise(across(RA_Apes:RA_Ungulate, mean)) %>%
-  filter(Distance <= 5 | Distance >= 20)
+  mutate(Distance_To_Village = case_when(Distance < 5 ~ 'Less than 5 km', Distance > 20 ~ 'More than 20 km')) %>%
+  group_by(Distance_To_Village) %>%
+  filter(!is.na(Distance_To_Village)) %>%
+  summarise(across(RA_Apes:RA_Ungulate, mean))
 
 ```
 
@@ -141,9 +142,11 @@ gabondata %>%
 
 ```{r}
 
+#Finding standard deviations across multiple columns
+
 gabondata %>%
   summarise(across(Veg_Rich:Diversity_MammalSpecies, sd))
-  
+
 
 ```
 

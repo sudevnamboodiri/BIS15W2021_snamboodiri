@@ -420,9 +420,9 @@ library(janitor)</code></pre>
 <div id="questions" class="section level2">
 <h2>Questions</h2>
 <p><strong>1. (2 points) Briefly explain how R, RStudio, and GitHub work together to make work flows in data science transparent and repeatable. What is the advantage of using RMarkdown in this context?</strong></p>
-<p>R is a programming language that tells the computer what to do, Rstudio is the GUI that lets programmers use R to do things. RMarkdown allows others to view code as it can be inserted directly into web documents, useful for transparency.</p>
+<p>R is a programming language that tells the computer what to do, Rstudio is the GUI that lets programmers use R to do things. RMarkdown allows others to view code as it can be inserted directly into web documents, useful for transparency. GitHub is an internet program that allows programmers to upload their code to the internet for others to view.</p>
 <p><strong>2. (2 points) What are the three types of <code>data structures</code> that we have discussed? Why are we using data frames for BIS 15L?</strong></p>
-<p>A vector, a bunch of values in a set. A matrix, which is a bunch of vectors. And a dataframe, which is a more accessible form of a matrix styled similarly to a spreadsheet and easier to use and visualize.</p>
+<p>A vector, a bunch of values in a set. A matrix, which is a bunch of vectors. And a dataframe, which is a more accessible form of a matrix styled similarly to a spreadsheet and easier to use and visualize (which is why we use it).</p>
 <p>In the midterm 1 folder there is a second folder called <code>data</code>. Inside the <code>data</code> folder, there is a .csv file called <code>ElephantsMF</code>. These data are from Phyllis Lee, Stirling University, and are related to Lee, P., et al. (2013), “Enduring consequences of early experiences: 40-year effects on survival and success among African elephants (Loxodonta africana),” Biology Letters, 9: 20130011. <a href="https://www.kaggle.com/mostafaelseidy/elephantsmf">kaggle</a>.</p>
 <p><strong>3. (2 points) Please load these data as a new object called <code>elephants</code>. Use the function(s) of your choice to get an idea of the structure of the data. Be sure to show the class of each variable.</strong></p>
 <pre class="r"><code>elephants &lt;- readr::read_csv(&#39;data/ElephantsMF.csv&#39;)</code></pre>
@@ -445,7 +445,7 @@ library(janitor)</code></pre>
 ##   ..   Sex = col_character()
 ##   .. )</code></pre>
 <p><strong>4. (2 points) Change the names of the variables to lower case and change the class of the variable <code>sex</code> to a factor.</strong></p>
-<pre class="r"><code>elephants &lt;- janitor::clean_names(elephants)
+<pre class="r"><code>elephants &lt;- clean_names(elephants)
 elephants</code></pre>
 <pre><code>## # A tibble: 288 x 3
 ##      age height sex  
@@ -464,7 +464,7 @@ elephants</code></pre>
 <pre class="r"><code>elephants$sex = as.factor(elephants$sex)</code></pre>
 <p><strong>5. (2 points) How many male and female elephants are represented in the data?</strong></p>
 <pre class="r"><code>elephants %&gt;%
-tabyl(sex)</code></pre>
+  tabyl(sex)</code></pre>
 <pre><code>##  sex   n   percent
 ##    F 150 0.5208333
 ##    M 138 0.4791667</code></pre>
@@ -485,13 +485,13 @@ tabyl(sex)</code></pre>
 <pre class="r"><code>elephants %&gt;%
   filter(age&gt;=25) %&gt;%
   group_by(sex) %&gt;%
-  summarise(avg_height = mean(height), min_height = min(height), max_height = max(height))</code></pre>
+  summarise(avg_height = mean(height), min_height = min(height), max_height = max(height), no_of_individuals = n())</code></pre>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 2 x 4
-##   sex   avg_height min_height max_height
-##   &lt;fct&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-## 1 F           233.       206.       278.
-## 2 M           273.       237.       304.</code></pre>
+<pre><code>## # A tibble: 2 x 5
+##   sex   avg_height min_height max_height no_of_individuals
+##   &lt;fct&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;             &lt;int&gt;
+## 1 F           233.       206.       278.                25
+## 2 M           273.       237.       304.                 8</code></pre>
 <p>For the next series of questions, we will use data from a study on vertebrate community composition and impacts from defaunation in <a href="https://en.wikipedia.org/wiki/Gabon">Gabon, Africa</a>. One thing to notice is that the data include 24 separate transects. Each transect represents a path through different forest management areas.</p>
 <p>Reference: Koerner SE, Poulsen JR, Blanchard EJ, Okouyi J, Clark CJ. Vertebrate community composition and diversity declines along a defaunation gradient radiating from rural villages in Gabon. <em>Journal of Applied Ecology</em>. 2016. This paper, along with a description of the variables is included inside the midterm 1 folder.</p>
 <p><strong>9. (2 points) Load <code>IvindoData_DryadVersion.csv</code> and use the function(s) of your choice to get an idea of the overall structure. Change the variables <code>HuntCat</code> and <code>LandUse</code> to factors.</strong></p>
@@ -607,21 +607,20 @@ str(gabondata)</code></pre>
 ## 2 Moderate               1.62                 1.68</code></pre>
 <p><strong>11. (4 points) One of the conclusions in the study is that the relative abundance of animals drops off the closer you get to a village. Let’s try to reconstruct this (without the statistics). How does the relative abundance (RA) of apes, birds, elephants, monkeys, rodents, and ungulates compare between sites that are less than 5km from a village to sites that are greater than 20km from a village? The variable <code>Distance</code> measures the distance of the transect from the nearest village. Hint: try using the <code>across</code> operator.</strong></p>
 <pre class="r"><code>gabondata %&gt;%
-  group_by(Distance) %&gt;%
-  summarise(across(RA_Apes:RA_Ungulate, mean)) %&gt;%
-  filter(Distance &lt;= 5 | Distance &gt;= 20)</code></pre>
+  mutate(Distance_To_Village = case_when(Distance &lt; 5 ~ &#39;Less than 5 km&#39;, Distance &gt; 20 ~ &#39;More than 20 km&#39;)) %&gt;%
+  group_by(Distance_To_Village) %&gt;%
+  filter(!is.na(Distance_To_Village)) %&gt;%
+  summarise(across(RA_Apes:RA_Ungulate, mean))</code></pre>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 6 x 7
-##   Distance RA_Apes RA_Birds RA_Elephant RA_Monkeys RA_Rodent RA_Ungulate
-##      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-## 1     2.7     0        85.0       0.290       9.09      3.74        1.86
-## 2     2.92    0.24     68.2       0          25.6       4.05        1.88
-## 3     3.83    0        57.8       0          37.8       3.19        1.04
-## 4    20.8    12.9      59.3       0.56       19.8       3.66        3.71
-## 5    24.1     3.78     42.7       1.11       46.2       3.1         3.1 
-## 6    26.8     4.91     31.6       0          54.1       1.29        8.12</code></pre>
+<pre><code>## # A tibble: 2 x 7
+##   Distance_To_Vil~ RA_Apes RA_Birds RA_Elephant RA_Monkeys RA_Rodent RA_Ungulate
+##   &lt;chr&gt;              &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+## 1 Less than 5 km      0.08     70.4      0.0967       24.1      3.66        1.59
+## 2 More than 20 km     7.21     44.5      0.557        40.1      2.68        4.98</code></pre>
 <p><strong>12. (4 points) Based on your interest, do one exploratory analysis on the <code>gabon</code> data of your choice. This analysis needs to include a minimum of two functions in <code>dplyr.</code></strong></p>
-<pre class="r"><code>gabondata %&gt;%
+<pre class="r"><code>#Finding standard deviations across multiple columns
+
+gabondata %&gt;%
   summarise(across(Veg_Rich:Diversity_MammalSpecies, sd))</code></pre>
 <pre><code>## # A tibble: 1 x 21
 ##   Veg_Rich Veg_Stems Veg_liana Veg_DBH Veg_Canopy Veg_Understory RA_Apes

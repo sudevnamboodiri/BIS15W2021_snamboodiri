@@ -29,11 +29,11 @@ library(janitor)
 ## Questions
 **1. (2 points) Briefly explain how R, RStudio, and GitHub work together to make work flows in data science transparent and repeatable. What is the advantage of using RMarkdown in this context?**  
 
-R is a programming language that tells the computer what to do, Rstudio is the GUI that lets programmers use R to do things. RMarkdown allows others to view code as it can be inserted directly into web documents, useful for transparency.
+R is a programming language that tells the computer what to do, Rstudio is the GUI that lets programmers use R to do things. RMarkdown allows others to view code as it can be inserted directly into web documents, useful for transparency. GitHub is an internet program that allows programmers to upload their code to the internet for others to view.
 
 **2. (2 points) What are the three types of `data structures` that we have discussed? Why are we using data frames for BIS 15L?**
 
-A vector, a bunch of values in a set. A matrix, which is a bunch of vectors. And a dataframe, which is a more accessible form of a matrix styled similarly to a spreadsheet and easier to use and visualize.
+A vector, a bunch of values in a set. A matrix, which is a bunch of vectors. And a dataframe, which is a more accessible form of a matrix styled similarly to a spreadsheet and easier to use and visualize (which is why we use it).
 
 In the midterm 1 folder there is a second folder called `data`. Inside the `data` folder, there is a .csv file called `ElephantsMF`. These data are from Phyllis Lee, Stirling University, and are related to Lee, P., et al. (2013), "Enduring consequences of early experiences: 40-year effects on survival and success among African elephants (Loxodonta africana)," Biology Letters, 9: 20130011. [kaggle](https://www.kaggle.com/mostafaelseidy/elephantsmf).  
 
@@ -75,7 +75,7 @@ str(elephants)
 **4. (2 points) Change the names of the variables to lower case and change the class of the variable `sex` to a factor.**
 
 ```r
-elephants <- janitor::clean_names(elephants)
+elephants <- clean_names(elephants)
 elephants
 ```
 
@@ -105,7 +105,7 @@ elephants$sex = as.factor(elephants$sex)
 
 ```r
 elephants %>%
-tabyl(sex)
+  tabyl(sex)
 ```
 
 ```
@@ -156,7 +156,7 @@ elephants %>%
 elephants %>%
   filter(age>=25) %>%
   group_by(sex) %>%
-  summarise(avg_height = mean(height), min_height = min(height), max_height = max(height))
+  summarise(avg_height = mean(height), min_height = min(height), max_height = max(height), no_of_individuals = n())
 ```
 
 ```
@@ -164,11 +164,11 @@ elephants %>%
 ```
 
 ```
-## # A tibble: 2 x 4
-##   sex   avg_height min_height max_height
-##   <fct>      <dbl>      <dbl>      <dbl>
-## 1 F           233.       206.       278.
-## 2 M           273.       237.       304.
+## # A tibble: 2 x 5
+##   sex   avg_height min_height max_height no_of_individuals
+##   <fct>      <dbl>      <dbl>      <dbl>             <int>
+## 1 F           233.       206.       278.                25
+## 2 M           273.       237.       304.                 8
 ```
 
 
@@ -325,9 +325,10 @@ gabondata %>%
 
 ```r
 gabondata %>%
-  group_by(Distance) %>%
-  summarise(across(RA_Apes:RA_Ungulate, mean)) %>%
-  filter(Distance <= 5 | Distance >= 20)
+  mutate(Distance_To_Village = case_when(Distance < 5 ~ 'Less than 5 km', Distance > 20 ~ 'More than 20 km')) %>%
+  group_by(Distance_To_Village) %>%
+  filter(!is.na(Distance_To_Village)) %>%
+  summarise(across(RA_Apes:RA_Ungulate, mean))
 ```
 
 ```
@@ -335,21 +336,19 @@ gabondata %>%
 ```
 
 ```
-## # A tibble: 6 x 7
-##   Distance RA_Apes RA_Birds RA_Elephant RA_Monkeys RA_Rodent RA_Ungulate
-##      <dbl>   <dbl>    <dbl>       <dbl>      <dbl>     <dbl>       <dbl>
-## 1     2.7     0        85.0       0.290       9.09      3.74        1.86
-## 2     2.92    0.24     68.2       0          25.6       4.05        1.88
-## 3     3.83    0        57.8       0          37.8       3.19        1.04
-## 4    20.8    12.9      59.3       0.56       19.8       3.66        3.71
-## 5    24.1     3.78     42.7       1.11       46.2       3.1         3.1 
-## 6    26.8     4.91     31.6       0          54.1       1.29        8.12
+## # A tibble: 2 x 7
+##   Distance_To_Vil~ RA_Apes RA_Birds RA_Elephant RA_Monkeys RA_Rodent RA_Ungulate
+##   <chr>              <dbl>    <dbl>       <dbl>      <dbl>     <dbl>       <dbl>
+## 1 Less than 5 km      0.08     70.4      0.0967       24.1      3.66        1.59
+## 2 More than 20 km     7.21     44.5      0.557        40.1      2.68        4.98
 ```
 
 **12. (4 points) Based on your interest, do one exploratory analysis on the `gabon` data of your choice. This analysis needs to include a minimum of two functions in `dplyr.`**
 
 
 ```r
+#Finding standard deviations across multiple columns
+
 gabondata %>%
   summarise(across(Veg_Rich:Diversity_MammalSpecies, sd))
 ```
