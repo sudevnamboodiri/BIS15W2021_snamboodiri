@@ -1,7 +1,7 @@
 ---
 title: "Lab 6 Homework"
 author: "Sudev Namboodiri"
-date: "2021-01-24"
+date: "2021-01-27"
 output:
   html_document: 
     theme: spacelab
@@ -234,10 +234,6 @@ fisheries_tidy %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 1 x 2
 ##   country overall_catch
 ##   <fct>           <dbl>
@@ -257,10 +253,6 @@ fisheries_tidy %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 1 x 2
 ##   country sardine_catch
 ##   <fct>           <dbl>
@@ -277,10 +269,6 @@ fisheries_tidy %>%
   summarise(cephalopod_catch = sum(catch, na.rm = TRUE)) %>%
   arrange(desc(cephalopod_catch)) %>%
   head(5)
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
@@ -307,10 +295,6 @@ fisheries_tidy%>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 1 x 2
 ##   asfis_species_name    species_catch_total
 ##   <chr>                               <dbl>
@@ -326,10 +310,6 @@ fisheries_tidy %>%
   summarise(no_of_distinct_species_caught = n_distinct(asfis_species_name)) %>%
   arrange(desc(no_of_distinct_species_caught)) %>%
   head(5)
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
