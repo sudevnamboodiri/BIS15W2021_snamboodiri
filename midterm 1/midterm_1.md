@@ -1,7 +1,7 @@
 ---
 title: "Midterm 1"
 author: "Sudev Namboodiri"
-date: "2021-01-26"
+date: "2021-02-02"
 output:
   html_document: 
     theme: spacelab
@@ -137,13 +137,9 @@ elephants %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 2 x 3
 ##   sex   avg_age avg_height
-##   <fct>   <dbl>      <dbl>
+## * <fct>   <dbl>      <dbl>
 ## 1 F       12.8        190.
 ## 2 M        8.95       185.
 ```
@@ -160,13 +156,9 @@ elephants %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 2 x 5
 ##   sex   avg_height min_height max_height no_of_individuals
-##   <fct>      <dbl>      <dbl>      <dbl>             <int>
+## * <fct>      <dbl>      <dbl>      <dbl>             <int>
 ## 1 F           233.       206.       278.                25
 ## 2 M           273.       237.       304.                 8
 ```
@@ -308,10 +300,6 @@ gabondata %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 2 x 3
 ##   HuntCat  avg_bird_diversity avg_mammal_diversity
 ##   <fct>                 <dbl>                <dbl>
@@ -329,10 +317,6 @@ gabondata %>%
   group_by(Distance_To_Village) %>%
   filter(!is.na(Distance_To_Village)) %>%
   summarise(across(RA_Apes:RA_Ungulate, mean))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
