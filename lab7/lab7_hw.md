@@ -1,7 +1,7 @@
 ---
 title: "Lab 7 Homework"
 author: "Sudev Namboodiri"
-date: "2021-02-01"
+date: "2021-02-03"
 output:
   html_document: 
     theme: spacelab
@@ -377,6 +377,11 @@ amphibio %>%
 ```
 I think the NAs are supposed to represent a false value. (e.g: An amphibion that does not burrow would have NA under fos)
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
 **10. Now that we know how NA's are represented in the `amniota` data, how would you load the data such that the values which represent NA's are automatically converted?**
 
 ```r
@@ -407,6 +412,7 @@ replace_na(amphibio, list(Fos = 0, Ter = 0, Aqu = 0, Arb = 0))
 ## #   Reproductive_output_y <dbl>, Offspring_size_min_mm <dbl>,
 ## #   Offspring_size_max_mm <dbl>, Dir <dbl>, Lar <dbl>, Viv <dbl>, OBS <lgl>
 ```
+</div>
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.  
