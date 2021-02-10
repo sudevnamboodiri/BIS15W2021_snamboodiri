@@ -87,6 +87,7 @@ sydneybeaches_wide %>%
 ```{r}
 sydneybeaches_long <- sydneybeaches_long %>%
   separate(date, into = c("day", "month", "year"), sep = "/")
+sydneybeaches_long
 ```
 
 7. What is the average `enterococci_cfu_100ml` by year for each beach. Think about which data you will use- long or wide.

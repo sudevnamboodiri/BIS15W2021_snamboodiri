@@ -1,7 +1,7 @@
 ---
 title: "Lab 8 Homework"
 author: "Sudev Namboodiri"
-date: "2021-02-03"
+date: "2021-02-09"
 output:
   html_document: 
     theme: spacelab
@@ -62,7 +62,7 @@ library(here)
 ```
 
 ```
-## here() starts at C:/Users/Sudev/Documents/GitHub/BIS15W2021_snamboodiri
+## here() starts at D:/TA files/Winter2021 BIS15L/students_rep/BIS15W2021_snamboodiri
 ```
 
 The quotes show the folder structure from the root directory.
@@ -233,6 +233,24 @@ sydneybeaches_wide %>%
 ```r
 sydneybeaches_long <- sydneybeaches_long %>%
   separate(date, into = c("day", "month", "year"), sep = "/")
+sydneybeaches_long
+```
+
+```
+## # A tibble: 3,690 x 5
+##    site           day   month year  enterococci_cfu_100ml
+##    <chr>          <chr> <chr> <chr>                 <dbl>
+##  1 Clovelly Beach 02    01    2013                     19
+##  2 Clovelly Beach 06    01    2013                      3
+##  3 Clovelly Beach 12    01    2013                      2
+##  4 Clovelly Beach 18    01    2013                     13
+##  5 Clovelly Beach 30    01    2013                      8
+##  6 Clovelly Beach 05    02    2013                      7
+##  7 Clovelly Beach 11    02    2013                     11
+##  8 Clovelly Beach 23    02    2013                     97
+##  9 Clovelly Beach 07    03    2013                      3
+## 10 Clovelly Beach 25    03    2013                      0
+## # ... with 3,680 more rows
 ```
 
 7. What is the average `enterococci_cfu_100ml` by year for each beach. Think about which data you will use- long or wide.
@@ -245,7 +263,7 @@ beach_by_year <- sydneybeaches_long %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 ```
 
 ```r
