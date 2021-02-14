@@ -1,7 +1,7 @@
 ---
 title: "Lab 9 Homework"
 author: "Sudev Namboodiri"
-date: "2021-02-08"
+date: "2021-02-14"
 output:
   html_document: 
     theme: spacelab
@@ -59,6 +59,10 @@ PCIP26: Percentage of degrees awarded in Biological And Biomedical Sciences
 COSTT4_A: Annual cost of attendance  
 C150_4_POOLED: 4-year completion rate  
 PFTFTUG1_EF: Percentage of undergraduate students who are first-time, full-time degree/certificate-seeking undergraduate students  
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 1. Use your preferred function(s) to have a look at the data and get an idea of its structure. Make sure you summarize NA's and determine whether or not the data are tidy. You may also consider dealing with any naming issues.
 
@@ -86,6 +90,7 @@ colleges
 
 
 
+</div>
 
 2. Which cities in California have the highest number of colleges?
 
@@ -94,10 +99,6 @@ colleges %>%
   group_by(CITY) %>%
   summarise( count = n())%>%
   arrange(desc(count))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
@@ -125,18 +126,16 @@ top_10 <- colleges %>%
   summarise( count = n())%>%
   arrange(desc(count)) %>%
   head(10)
-```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```r
 top_10 %>%
   ggplot(aes(x = CITY, y = count)) + geom_col()
 ```
 
 ![](lab9_hw_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 4. The column `COSTT4_A` is the annual cost of each institution. Which city has the highest average cost? Where is it located?
 
@@ -147,13 +146,9 @@ colleges %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 161 x 2
 ##    CITY        avg_cost
-##    <chr>          <dbl>
+##  * <chr>          <dbl>
 ##  1 Alameda        12038
 ##  2 Anaheim        16877
 ##  3 Angwin         41700
@@ -166,6 +161,7 @@ colleges %>%
 ## 10 Belmont        50415
 ## # ... with 151 more rows
 ```
+</div>
 
 5. Based on your answer to #4, make a plot that compares the cost of the individual colleges in the most expensive city. Bonus! Add UC Davis here to see how it compares :>).
 
@@ -175,13 +171,7 @@ expensive_city <- colleges %>%
   summarise(avg_cost = mean(COSTT4_A, na.rm = T)) %>%
   arrange(desc(avg_cost)) %>%
   head(1)
-```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```r
 expensive_city <- expensive_city$CITY[1]
 
 colleges %>%
@@ -249,6 +239,22 @@ Use `separate()` to separate institution name into two new columns "UNIV" and "C
 ```r
 univ_calif_final <- univ_calif_final %>%
   separate(INSTNM, c("UNIV", "CAMPUS"), sep = "-")
+univ_calif_final
+```
+
+```
+## # A tibble: 8 x 11
+##   UNIV  CAMPUS CITY  STABBR ZIP   ADM_RATE SAT_AVG PCIP26 COSTT4_A C150_4_POOLED
+##   <chr> <chr>  <chr> <chr>  <chr>    <dbl>   <dbl>  <dbl>    <dbl>         <dbl>
+## 1 Univ~ San D~ La J~ CA     92093    0.357    1324  0.216    31043         0.872
+## 2 Univ~ Irvine Irvi~ CA     92697    0.406    1206  0.107    31198         0.876
+## 3 Univ~ River~ Rive~ CA     92521    0.663    1078  0.149    31494         0.73 
+## 4 Univ~ Los A~ Los ~ CA     9009~    0.180    1334  0.155    33078         0.911
+## 5 Univ~ Davis  Davis CA     9561~    0.423    1218  0.198    33904         0.850
+## 6 Univ~ Santa~ Sant~ CA     9506~    0.578    1201  0.193    34608         0.776
+## 7 Univ~ Berke~ Berk~ CA     94720    0.169    1422  0.105    34924         0.916
+## 8 Univ~ Santa~ Sant~ CA     93106    0.358    1281  0.108    34998         0.816
+## # ... with 1 more variable: PFTFTUG1_EF <dbl>
 ```
 
 9. The column `ADM_RATE` is the admissions rate by campus. Which UC has the lowest and highest admissions rates? Produce a numerical summary and an appropriate plot.
