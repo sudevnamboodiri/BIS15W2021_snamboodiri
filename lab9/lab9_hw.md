@@ -161,7 +161,6 @@ colleges %>%
 ## 10 Belmont        50415
 ## # ... with 151 more rows
 ```
-</div>
 
 5. Based on your answer to #4, make a plot that compares the cost of the individual colleges in the most expensive city. Bonus! Add UC Davis here to see how it compares :>).
 
@@ -185,6 +184,7 @@ colleges %>%
 ```
 
 ![](lab9_hw_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+</div>
 
 6. The column `ADM_RATE` is the admissions rate by college and `C150_4_POOLED` is the four-year completion rate. Use a scatterplot to show the relationship between these two variables. What do you think this means?
 
