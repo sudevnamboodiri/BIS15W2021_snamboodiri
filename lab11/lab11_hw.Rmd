@@ -1,6 +1,6 @@
 ---
 title: "Lab 11 Homework"
-author: "Please Add Your Name Here"
+author: "Sudev Namboodiri"
 date: "`r Sys.Date()`"
 output:
   html_document: 
@@ -92,7 +92,8 @@ gapminder %>%
 **6. We are interested in the relationship between per capita GDP and life expectancy; i.e. does having more money help you live longer?**
 ```{r}
 gapminder %>%
-  ggplot(aes(x = lifeExp, y = gdpPercap)) + geom_line() + facet_wrap(~year)
+  ggplot(aes(x = lifeExp, y = gdpPercap)) + geom_point() + ylim(0,60000) + 
+  geom_smooth(method = lm, se = FALSE)
 ```
 
 **7. Which countries have had the largest population growth since 1952?**

@@ -1,6 +1,6 @@
 ---
 title: "Lab 11 Homework"
-author: "Please Add Your Name Here"
+author: "Sudev Namboodiri"
 date: "2021-02-15"
 output:
   html_document: 
@@ -141,7 +141,24 @@ gapminder %>%
 
 ```r
 gapminder %>%
-  ggplot(aes(x = lifeExp, y = gdpPercap)) + geom_line() + facet_wrap(~year)
+  ggplot(aes(x = lifeExp, y = gdpPercap)) + geom_point() + ylim(0,60000) + 
+  geom_smooth(method = lm, se = FALSE)
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+```
+## Warning: Removed 5 rows containing non-finite values (stat_smooth).
+```
+
+```
+## Warning: Removed 5 rows containing missing values (geom_point).
+```
+
+```
+## Warning: Removed 28 rows containing missing values (geom_smooth).
 ```
 
 ![](lab11_hw_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
