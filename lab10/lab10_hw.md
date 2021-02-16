@@ -1,7 +1,7 @@
 ---
 title: "Lab 10 Homework"
 author: "Please Add Your Name Here"
-date: "2021-02-10"
+date: "2021-02-15"
 output:
   html_document: 
     theme: spacelab
@@ -120,10 +120,6 @@ deserts %>%
   ggplot(aes(x = taxa, y = pct)) + geom_col()
 ```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
 ![](lab10_hw_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
 4. For the taxa included in the study, use the fill option to show the proportion of individuals sampled by `plot_type.`
@@ -138,7 +134,7 @@ deserts %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'taxa' (override with `.groups` argument)
+## `summarise()` has grouped output by 'taxa'. You can override using the `.groups` argument.
 ```
 
 ![](lab10_hw_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
@@ -157,7 +153,9 @@ deserts %>%
 ![](lab10_hw_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 
-6. Add another layer to your answer from #4 using `geom_point` to get an idea of how many measurements were taken for each species.
+6. Add another layer to your answer from #5 using `geom_point` to get an idea of how many measurements were taken for each species.
+
+# please try it on Q5 result
 
 
 ```r
@@ -169,7 +167,7 @@ deserts %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'taxa' (override with `.groups` argument)
+## `summarise()` has grouped output by 'taxa'. You can override using the `.groups` argument.
 ```
 
 ![](lab10_hw_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
@@ -184,10 +182,6 @@ deserts %>%
   group_by(year) %>%
   summarise(NUMBER_OF_OBSERVATIONS = n()) %>%
   ggplot(aes(x = year, y = NUMBER_OF_OBSERVATIONS)) + geom_line()
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ![](lab10_hw_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
@@ -216,10 +210,6 @@ deserts %>%
   group_by(species) %>%
   summarise(mean_weight = mean(weight, na.rm = T)) %>%
   arrange(desc(mean_weight))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
@@ -267,7 +257,7 @@ deserts %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 ```
 
 ![](lab10_hw_files/figure-html/unnamed-chunk-12-1.png)<!-- -->

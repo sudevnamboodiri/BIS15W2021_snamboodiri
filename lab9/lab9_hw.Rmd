@@ -42,6 +42,10 @@ PCIP26: Percentage of degrees awarded in Biological And Biomedical Sciences
 COSTT4_A: Annual cost of attendance  
 C150_4_POOLED: 4-year completion rate  
 PFTFTUG1_EF: Percentage of undergraduate students who are first-time, full-time degree/certificate-seeking undergraduate students  
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 1. Use your preferred function(s) to have a look at the data and get an idea of its structure. Make sure you summarize NA's and determine whether or not the data are tidy. You may also consider dealing with any naming issues.
 ```{r}
@@ -57,6 +61,7 @@ colleges
 ```{r}
 
 ```
+</div>
 
 2. Which cities in California have the highest number of colleges?
 ```{r}
@@ -79,6 +84,10 @@ top_10 %>%
   ggplot(aes(x = CITY, y = count)) + geom_col()
 
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 4. The column `COSTT4_A` is the annual cost of each institution. Which city has the highest average cost? Where is it located?
 ```{r}
@@ -105,6 +114,7 @@ colleges %>%
 
   ggplot(aes(x = INSTNM, y = COSTT4_A)) + geom_col()
 ```
+</div>
 
 6. The column `ADM_RATE` is the admissions rate by college and `C150_4_POOLED` is the four-year completion rate. Use a scatterplot to show the relationship between these two variables. What do you think this means?
 ```{r}
@@ -143,6 +153,7 @@ Use `separate()` to separate institution name into two new columns "UNIV" and "C
 ```{r}
 univ_calif_final <- univ_calif_final %>%
   separate(INSTNM, c("UNIV", "CAMPUS"), sep = "-")
+univ_calif_final
 ```
 
 9. The column `ADM_RATE` is the admissions rate by campus. Which UC has the lowest and highest admissions rates? Produce a numerical summary and an appropriate plot.
