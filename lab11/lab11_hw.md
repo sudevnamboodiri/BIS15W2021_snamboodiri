@@ -1,7 +1,7 @@
 ---
 title: "Lab 11 Homework"
 author: "Sudev Namboodiri"
-date: "2021-02-15"
+date: "2021-02-18"
 output:
   html_document: 
     theme: spacelab
@@ -73,10 +73,6 @@ gapminder %>%
   labs(title = "Global life expectancy between 1950 and 2007", x = 'Year', y = 'Mean global life expectancy')
 ```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
 ![](lab11_hw_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
 
@@ -106,13 +102,9 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 5 x 4
 ##   continent min_life_exp max_life_exp mean_life_exp
-##   <fct>            <dbl>        <dbl>         <dbl>
+## * <fct>            <dbl>        <dbl>         <dbl>
 ## 1 Africa            23.6         76.4          48.9
 ## 2 Americas          37.6         80.7          64.7
 ## 3 Asia              28.8         82.6          60.1
@@ -131,7 +123,7 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 ```
 
 ![](lab11_hw_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
@@ -173,10 +165,6 @@ gapminder %>%
   summarise(difference = max(pop) - min(pop)) %>%
   arrange(desc(difference)) %>%
   head(5)
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
