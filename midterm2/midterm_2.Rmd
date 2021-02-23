@@ -109,17 +109,19 @@ Highest
 life_expectancy_long %>%
   filter(year>= 1920, year <= 2020) %>%
   group_by(country) %>%
-  summarise(mean_life_exp_over_100_years = mean(life_expectancy, na.rm = T)) %>%
+  summarise(mean_life_exp_over_100_years = mean(life_expectancy)) %>%
   arrange(desc(mean_life_exp_over_100_years)) %>%
   head(1)
 ```
+
+I chose not to include countries that have NA values from 1920 to 2020, because that would affect the calculated mean.Countries with NA values in those areas indicate relatively new countries, and if they only have values later in the years, their life expectancy will automatically be higher because of advancements in technology. It does not paint an accurate picture of how the country fared over the past 100 years.
 
 Lowest
 ```{r}
 life_expectancy_long %>%
   filter(year>= 1920, year <= 2020) %>%
   group_by(country) %>%
-  summarise(mean_life_exp_over_100_years = mean(life_expectancy, na.rm = T)) %>%
+  summarise(mean_life_exp_over_100_years = mean(life_expectancy)) %>%
   arrange((mean_life_exp_over_100_years)) %>%
   head(1)
 ```
@@ -143,7 +145,7 @@ life_expectancy %>%
 life_expectancy_long %>%
   filter(country == 'Kuwait') %>%
   filter(year>=1920 & year<=2020) %>%
-  ggplot(aes(x = year, y = life_expectancy, group = 1)) + geom_line()
+  ggplot(aes(x = year, y = life_expectancy, group = country)) + geom_line()
 
 
 ```
