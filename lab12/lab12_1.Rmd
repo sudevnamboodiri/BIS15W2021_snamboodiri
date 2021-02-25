@@ -33,7 +33,7 @@ library(janitor)
 library(lubridate)
 ```
 
-Now we can list all of the files in a directory. This isvery helpful when you are working with multiple files at once.
+Now we can list all of the files in a directory. This is very helpful when you are working with multiple files at once.
 ```{r}
 files <- list.files(path = "data/spiders", pattern = ".csv")
 files
@@ -60,7 +60,7 @@ class(spider_list[[3]])
 ## Practice
 1. What are the names of our list elements?
 ```{r}
-
+str(spider_list)
 ```
 
 ## Naming List Elements
@@ -247,14 +247,15 @@ write.csv(spiders_with_locs, file = "spiders_with_locs.csv", row.names = FALSE)
 It will be very helpful if you can install the following packages before the next lab. Please install them in order!
 `devtools` and `ggmap`
 ```{r}
-#install.packages("devtools")
-#library(devtools)
-#devtools::install_github("dkahle/ggmap")
+install.packages("devtools")
+library(devtools)
+devtools::install_github("dkahle/ggmap")
 ```
 
 `rgeos`, `rgdal`, and `albersusa`
 ```{r, message = FALSE}
 #install.packages("albersusa")
+remotes::install_git("https://git.sr.ht/~hrbrmstr/albersusa%22")
 ```
 
 ## That's it! Take a break and I will see you on Zoom!  

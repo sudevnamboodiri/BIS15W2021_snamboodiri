@@ -26,12 +26,17 @@ If you completed part 1 of today's lab then you should have the following packag
 ```{r}
 #install.packages("devtools")
 #library(devtools)
-#devtools::install_github("dkahle/ggmap")
+#install.packages("rlang")
+devtools::install_github("dkahle/ggmap")
 ```
 
 `albersusa`
 ```{r, message = FALSE}
-#install.packages("albersusa")
+
+
+
+devtools::install_github("hrbrmstr/albersusa")
+
 ```
 
 ## Load the libraries
@@ -91,6 +96,12 @@ ggmap(map1) +
 ## Practice
 1. Map the spider locations with a different type of base map. Try to adjust the map using different aesthetics including `size`, `color`, and `alpha`.
 ```{r}
+map2 <- get_map(bbox, maptype = "toner-hybrid", source = "stamen")
+
+ggmap(map2) + 
+  geom_point(data = spiders, aes(longitude, latitude)) +
+  labs(x = "Longitude", y = "Latitude", title = "Spider Locations")
+
 
 ```
 
@@ -168,6 +179,7 @@ ggsave(filename = "map.svg", device = "svg", plot = uso_map, height = 5, width =
 ## Practice
 1. Make a new new column that labels each specimen as occuring in a cave or on the surface. The word "Cave" is part of the locality information.
 ```{r}
+
 
 ```
 
