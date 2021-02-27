@@ -147,47 +147,27 @@ homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
 ```
 
 2. Build a shiny app that produces a barplot that explores `locomotion` type with a fill reaction for the variables `trophic.guild` and `thermoregulation`.  
-```{r}
-homerange %>%
-  ggplot(aes(x = locomotion, fill = thermoregulation)) +geom_bar(position = 'dodge')
-
-
-ui <- fluidPage(
-    selectInput("fill", "Select fill type", choices = c("thermoregulation", "trophic.guild")),
-  plotOutput("plot", width = "500px", height = "400px")
-)
-
-server <- function(input, output) {
-  output$plot <- renderPlot({
-    ggplot(homerange, aes_string(x = "locomotion", fill = input$fill)) + geom_bar(position = 'dodge') + theme_light(base_size = 18)
-  })
-
-}
-
-shinyApp(ui, server)
-
-```
 
 3. The app below adds some nicer aesthetics. It makes a density plot of log10.hra with taxon as a reactive variable. Edit the app to explore log10.hra by locomotion type.  
 ```{r, eval=F, echo=T}
 ui <- fluidPage(    
   
-  titlePanel("Log 10 Homerange by Locomotion"), # give the page a title
+  titlePanel("Log 10 Homerange by Taxon"), # give the page a title
   
   # generate a row with a sidebar
   sidebarLayout(      
     
     # define the sidebar with one input
     sidebarPanel(
-      selectInput("Locomotion", " Select Locomotion of Interest:", 
-                  choices=unique(homerange$locomotion)),
+      selectInput("taxon", " Select Taxon of Interest:", 
+                  choices=unique(homerange$taxon)),
       hr(),
       helpText("Reference: Tamburello N, Cote IM, Dulvy NK (2015) Energy and the scaling of animal space use. The American Naturalist 186(2):196-211.")
     ),
     
     # create a spot for the barplot
     mainPanel(
-      plotOutput("LocomotionPlot")  
+      plotOutput("taxonPlot")  
     )
     
   )
@@ -197,10 +177,10 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   # fill in the spot we created for a plot
-  output$LocomotionPlot <- renderPlot({
+  output$taxonPlot <- renderPlot({
     
     homerange %>% 
-    filter(locomotion == input$locomotion) %>% 
+    filter(taxon == input$taxon) %>% 
     ggplot(aes(x=log10.hra)) + 
     geom_density(color="black", fill="steelblue", alpha=0.6)
   })
@@ -212,7 +192,7 @@ shinyApp(ui, server)
 ## Packages for next time  
 Please install shinydashboard below for part 2!  
 ```{r}
-install.packages("shinydashboard")
+#install.packages("shinydashboard")
 ```
 
 ## That's it, let's take a break!   
