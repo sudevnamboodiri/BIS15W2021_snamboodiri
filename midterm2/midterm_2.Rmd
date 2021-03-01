@@ -3,9 +3,9 @@ title: "Midterm 2"
 author: "Please Add Your Name Here"
 date: "`r Sys.Date()`"
 output:
-  html_document:
+  html_document: 
     theme: spacelab
-    toc: no
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -138,6 +138,10 @@ life_expectancy %>%
 ```{r}
 
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 5. (3 points) Make a plot that shows the change over the past 100 years for the country with the biggest improvement in life expectancy. Be sure to add appropriate aesthetics to make the plot clean and clear. Once you have made the plot, do a little internet searching and see if you can discover what historical event may have contributed to this remarkable change.  
 
@@ -149,7 +153,7 @@ life_expectancy_long %>%
 
 
 ```
-
+</div>
 ## Population Growth
 6. (3 points) Which 5 countries have had the highest population growth over the past 100 years (1920-2020)?
 ```{r}
@@ -170,6 +174,10 @@ population_long %>%
 ```
 
 The units used for income are gross domestic product per person adjusted for differences in purchasing power in international dollars.
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 8. (4 points) As in the previous questions, which countries have experienced the biggest growth in per person GDP. Show this as a table and then plot the changes for the top 5 countries. With a bit of research, you should be able to explain the dramatic downturns of the wealthiest economies that occurred during the 1980's.
 ```{r}
@@ -189,6 +197,7 @@ income_long %>%
   ggplot(aes(x = year, y = income_per_person, group = country, color = country)) + geom_line()
 
 ```
+</div>
 
 9. (3 points) Create three new objects that restrict each data set (life expectancy, population, income) to the years 1920-2020. Hint: I suggest doing this with the long form of your data. Once this is done, merge all three data sets using the code I provide below. You may need to adjust the code depending on how you have named your objects. I called mine `life_expectancy_100`, `population_100`, and `income_100`. For some of you, learning these `joins` will be important for your project.  
 
@@ -224,3 +233,12 @@ gapminder_join %>%
   filter(country == "India") %>%
   ggplot(aes(x = population, y = income_per_person)) + geom_line() + labs(title = "Population growth vs the income per person in India")
 ```
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+# missing .md file
+
+</div>
