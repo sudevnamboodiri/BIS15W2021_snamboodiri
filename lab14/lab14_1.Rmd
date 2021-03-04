@@ -238,8 +238,8 @@ GC_results <- data.frame(file_name = vector(mode = "character", length = length(
 ## Packages for next time  
 Please install packages below for part 2!  
 ```{r}
-#install.packages("qtl")
-#install.packages("qtlcharts")
+install.packages("qtl")
+install.packages("qtlcharts")
 ```
 
 ## That's it! Take a break and I will see you on Zoom!  
