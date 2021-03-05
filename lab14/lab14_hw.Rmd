@@ -116,6 +116,10 @@ plotMissing(hyper, main="")
 
 plotMissing(hyper, main="", reorder=1)
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 **7. Based on your answer from previous question, you probably noticed that there are gene markers without data. Please use the function `drop.nullmarkers` to remove markers that have no genotype data. After this, make a new summary to show the number of markers on each chromosome. How many gene markers were dropped? Where were the dropped markers located? Please use the data without nullmarkers for the following questions.**
 ```{r}
@@ -123,6 +127,7 @@ hyper <- drop.nullmarkers(hyper)
 summary(hyper)
 ```
 It seems that one marker was dropped, located in "5"
+</div>
 
 **8. Please conduct single-QTL analysis and create a table to give the maximum LOD score on each chromosome based on their blood pressure phenotypes. Which gene marker has the higiest LOD score? Which chromosome contains the gene marker that has the highest LOD score? Then, creates an interactive chart with LOD curves from a genome scan for all chromosomes.**
 ```{r}
@@ -134,6 +139,10 @@ summary(out.em)
 
 plot(out.em, chr=c(7,15), ylab="LOD Score")
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 **9. Based on your genome scan results, create a table which only includes those chromosomes with LOD > 1. Creates an interactive chart with LOD curves linked to estimated QTL effects for only those chromosomes with LOD > 1. Find the gene maker with the highest LOD score and describe how does the genetype of this marker influence the individual's phenotype.**
 ```{r}
@@ -142,6 +151,7 @@ summary(out.em, threshold=1)
 iplotScanone(out.em, chr=c(1,2,4,5,6,15))
 
 ```
+</div>
 
 **10. Please save your interactive chart from Q9 as a html file `hyper_iplotScanone.html` and make sure your upload it to your github repository with your lab14 homework as well.**
 ```{r}
